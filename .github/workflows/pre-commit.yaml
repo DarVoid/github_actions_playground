@@ -22,6 +22,14 @@ jobs:
         run: |
           npm install -g typescript
           
+      - name: build project               #
+        run: |                            
+          npm run build 
+  
+      - name: copy data to dist folder    #
+        run: |                          
+          npm run copy-files
+
       - name: Run pre-merge hook
         run: |
           npm run pre-merge

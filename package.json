@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": " tsc && node --test ./dist/tests",
+    "build": "tsc",
+    "copy-files": "cp -R ./src/data/ ./dist/",
+    "test": "node --test ./dist/tests",
     "wipe": "rm ./dist/ -R"
   },
   "author": "Jorge Duque",
