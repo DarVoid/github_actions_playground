@@ -50,7 +50,7 @@ jobs:
           # Server port, default 25:
           server_port: 2525
           # Optional whether this connection use TLS (default is true if server_port is 465)
-          secure: true
+          secure: false
           # Optional (recommended) mail server username:
           username: c2c8e5a263f543
           # Optional (recommended) mail server password:
