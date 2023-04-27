@@ -30,6 +30,6 @@ jobs:
         run: |                          
           npm run copy-files
 
-      - name: Run pre-merge hook
+      - name: Run test script
         run: |
-          npm run pre-merge
+          npm run test

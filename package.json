@@ -6,8 +6,9 @@
   "scripts": {
     "build": "tsc",
     "copy-files": "cp -R ./src/data/ ./dist/",
-    "test": "node --test ./dist/tests",
-    "wipe": "rm ./dist/ -R"
+    "test": "node --test ./dist/tests/",
+    "wipe": "rm ./dist/ -R",
+    "plswork": "npm run wipe && npm run build && npm run copy-files && npm run test"
   },
   "author": "Jorge Duque",
   "license": "MIT",
