@@ -90,8 +90,8 @@ jobs:
           secure: false #change to true in prod
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
-          subject: You're fired 
+          subject: You're not fired yet
           to: you@me.com
           from: Me, dio # <user@example.com>
-          body: It works!! (but actually doesn't)
+          body: It works!! (but actually does)
           ignore_cert: true
