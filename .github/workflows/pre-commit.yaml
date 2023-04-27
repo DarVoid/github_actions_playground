@@ -1,0 +1,27 @@
+name: Pre-Merge Hook
+on:
+  pull_request:
+    branches:
+      - master
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  pre-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Install dependencies
+        run: |
+          npm install
+          
+      - name: Install typoscripto
+        run: |
+          npm install -g typescript
+          
+      - name: Run pre-merge hook
+        run: |
+          npm run pre-merge

@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "test"
+    "test": " tsc && node --test ./dist/tests",
+    "wipe": "rm ./dist/ -R"
   },
   "author": "Jorge Duque",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^18.16.1"
+  }
 }
