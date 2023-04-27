@@ -6,11 +6,21 @@ import * as path from 'path'
 
 const file = fs.readFileSync(path.join(__dirname, "../data/verifythis.yaml"), 'utf-8')
 
-describe('check for objects', ()=> {
-    it('should do something nice', ()=> {
-        let a = parse(file)
+describe('check for yaml structure & business logic', () => {
+    let a : any = parse(file);
+
+    it('enable should be true', () => {
         assert.equal(a.enable, true)
-        assert.equal(a.cenas.isArray(), true)
+    })
+
+    it('should have an array', () => {
+        assert.equal(a.cenas instanceof Array, true)
+    })
+
+    it('should not have weird stuff in it', () => {
+        a.cenas.map((cada:string)=>{
+            assert.notEqual(cada, "weird stuff")
+        })
     })
 
 })
