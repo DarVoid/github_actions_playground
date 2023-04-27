@@ -81,3 +81,17 @@ jobs:
           # attachments: attachments.zip,git.diff,./dist/static/*.js
           # Optional priority: 'high', 'normal' (default) or 'low'
           # priority: low
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        if: ${{ success() }}
+        with:
+          server_address: ${{secrets.MAIL_CONNECTION}}
+          server_port:  ${{secrets.MAIL_PORT}}
+          secure: false #change to true in prod
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: You're fired 
+          to: you@me.com
+          from: Me, dio # <user@example.com>
+          body: It works!! (but actually doesn't)
+          ignore_cert: true
