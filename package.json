@@ -1,0 +1,11 @@
+{
+  "name": "cenas_giras",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Jorge Duque",
+  "license": "MIT"
+}
