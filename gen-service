@@ -8,6 +8,7 @@ fi
 
 root=$(pwd)
 services_root="src/services/"
+services_tests_dir="src/services/tests/"
 
 echo "Creating directory"
 mkdir -p $services_root$1
@@ -80,15 +81,16 @@ cd $root
 echo "Installing service into parent project"
 npm i $services_root$1
 
-echo "Generating import test for parent project"
-mkdir -p src/tests/services/
-touch src/tests/services/$1.test.ts
+echo "Generating import test for package in parent project"
+
+mkdir -p $services_tests_dir
+touch $services_tests_dir$1.test.ts
 echo -e "import {expect, test} from '@jest/globals';
 import $1 from '$1';
 
 test('test if $1 service was imported', () => {
     expect($1).not.toBe(null);
 });
-" > src/tests/services/$1.test.ts
+" > $services_tests_dir$1.test.ts
 
 echo "Done."
