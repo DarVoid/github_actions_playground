@@ -95,3 +95,9 @@ jobs:
           from: Me, dio # <user@example.com>
           body: It works!! (but actually does)
           ignore_cert: true
+      - name: automerger
+        uses: "pascalgn/automerge-action@v0.15.6"
+        if: ${{ success() }}
+        env:
+          MERGE_LABELS: ""
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc",
     "copy-files": "cp -R ./src/data/ ./dist/",
-    "test": "node --test ./dist/tests/",
-    "wipe": "rm ./dist/ -R",
+    "test": "jest --config jestconfig.json dist/",
+    "wipe": "rm -f ./dist/ -R",
     "plswork": "npm run wipe && npm run build && npm run copy-files && npm run test"
   },
   "author": "Jorge Duque",
@@ -15,5 +15,8 @@
   "dependencies": {
     "@types/node": "^18.16.1",
     "yaml": "^2.2.2"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
   }
 }
