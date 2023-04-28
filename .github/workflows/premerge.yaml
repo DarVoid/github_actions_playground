@@ -4,7 +4,9 @@ on:
     branches:
       - master
     types: [opened]
-
+permissions:
+  contents: read
+  pull-requests: write
 jobs:
   pre-merge:
     runs-on: ubuntu-latest
