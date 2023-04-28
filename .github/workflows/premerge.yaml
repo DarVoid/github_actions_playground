@@ -34,7 +34,7 @@ jobs:
         run: |
           npm run test
       - name: Send mail
-        uses: dawidd6/action-send-mail@v30
+        uses: dawidd6/action-send-mail@v3
         if: ${{ failure() }}
         with:
           # Specify connection via URL (replaces server_address, server_port, secure,
