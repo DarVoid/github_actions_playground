@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^18.16.1",
+    "merda": "file:src/services/auth",
     "yaml": "^2.2.2"
   }
 }

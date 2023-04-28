@@ -3,7 +3,7 @@ import  {describe, it} from 'node:test'
 import { parse, stringify } from 'yaml'
 import fs from 'fs'
 import * as path from 'path'
-
+import {treta} from 'merda'
 const file = fs.readFileSync(path.join(__dirname, "../data/verifythis.yaml"), 'utf-8')
 
 describe('check for yaml structure & business logic', () => {
@@ -21,6 +21,9 @@ describe('check for yaml structure & business logic', () => {
         a.cenas.map((cada:string)=>{
             assert.notEqual(cada, "weird stuff")
         })
+    })
+    it('should not have weird stuff in it', () => {
+        assert.equal(treta(),42)
     })
 
 })
