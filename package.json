@@ -6,15 +6,19 @@
   "scripts": {
     "build": "tsc",
     "copy-files": "cp -R ./src/data/ ./dist/",
-    "test": "node --test ./dist/tests/",
-    "wipe": "rm ./dist/ -R",
+    "test": "jest --config jestconfig.json dist/",
+    "wipe": "rm -f ./dist/ -R",
     "plswork": "npm run wipe && npm run build && npm run copy-files && npm run test"
   },
   "author": "Jorge Duque",
   "license": "MIT",
   "dependencies": {
     "@types/node": "^18.16.1",
-    "merda": "file:src/services/auth",
+    "foo": "file:src/services/foo",
+    "merda": "file:src/services/merda",
     "yaml": "^2.2.2"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
   }
 }

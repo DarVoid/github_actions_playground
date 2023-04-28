@@ -1,0 +1,94 @@
+#!/bin/bash
+
+if [[ $# -lt 1 ]]; then
+    printf "Error: missing package name "
+    printf "USAGE: gen-service <package-name> "
+    exit;
+fi
+
+root=$(pwd)
+services_root="src/services/"
+
+echo "Creating directory"
+mkdir -p $services_root$1
+cd $services_root$1
+
+echo "Creating package.json"
+echo -e "{
+  \"name\": \"$1\",
+  \"description\": \"$1 service\",
+  \"version\": \"1.0.0\",
+  \"main\": \"dist/index.js\",
+  \"types\": \"dist/index.d.ts\",
+  \"scripts\": {},
+  \"devDependencies\": {},
+  \"files\": [
+    \"dist/**/*\"
+  ]
+}
+" > package.json
+npm i
+
+echo "Adding npm scripts"
+npx -y npm-add-script \
+        -k "build" \
+        -v "tsc" \
+        --force
+
+npx -y npm-add-script \
+        -k "test" \
+        -v "jest --config jestconfig.json dist/" \
+        --force
+
+echo "Installing TypeScript"
+npm i typescript --save-dev
+
+echo "Creating tsconfig.json"
+rm -f tsconfig.json
+npx tsc --init --rootDir src/ --outDir dist/ --target es5 --declaration true
+
+echo "Creating .gitignore"
+echo -e "node_modules/" > .gitignore
+
+echo "Installing jest"
+npm i --save-dev ts-jest jest @types/jest
+
+echo "Creating jestconfig.json"
+echo -e "{
+    \"clearMocks\": true,
+    \"coverageProvider\": \"v8\"
+}" > jestconfig.json
+
+echo "Setting up project structure"
+mkdir -p src
+touch src/index.ts
+echo -e "const foo = () => 'bar';\nexport { foo };" > src/index.ts
+touch src/index.test.ts
+echo -e "import { foo } from './index';\n
+test('foo returns bar', () => {
+    expect(foo()).toBe('bar');
+});" > src/index.test.ts
+
+echo "Building"
+npm run build
+
+echo "Running tests"
+npm run test
+
+cd $root
+
+echo "Installing service into parent project"
+npm i $services_root$1
+
+echo "Generating import test for parent project"
+mkdir -p src/tests/services/
+touch src/tests/services/$1.test.ts
+echo -e "import {expect, test} from '@jest/globals';
+import $1 from '$1';
+
+test('test if $1 service was imported', () => {
+    expect($1).not.toBe(null);
+});
+" > src/tests/services/$1.test.ts
+
+echo "Done."

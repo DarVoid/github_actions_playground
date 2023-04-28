@@ -1,0 +1,5 @@
+{
+    "clearMocks": true,
+    "coverageProvider": "v8",
+    "modulePathIgnorePatterns":["dist/services/*"]
+}
