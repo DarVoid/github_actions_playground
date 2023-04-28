@@ -20,6 +20,6 @@ describe('check for yaml structure & business logic', () => {
         a.cenas.map((cada:string) => {
             expect(cada).not.toBe("weird stuff")
         })
-    })
+    }) 
 
 })
