@@ -14,8 +14,6 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^18.16.1",
-    "foo": "file:src/services/foo",
-    "merda": "file:src/services/merda",
     "yaml": "^2.2.2"
   },
   "devDependencies": {

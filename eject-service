@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ $# -lt 1 ]]; then
+    printf "Error: missing package name "
+    printf "USAGE: eject-service <package-name> "
+    exit;
+fi
+
+root=$(pwd)
+services_root="src/services/"
+services_tests_dir="src/services/tests/"
+
+echo "Deleting directory"
+rm -R -f $services_root$1
+
+echo "Uninstalling service from parent project"
+npm uninstall $1
+
+echo "Deleting tests"
+rm -f $services_tests_dir$1.test.ts
+
+echo "Done."
